@@ -3,7 +3,7 @@ package pairmatching.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import pairmatching.DTO.MenuDTO;
-import pairmatching.DTO.PairMatchingDTO;
+import pairmatching.DTO.PairTagDTO;
 import pairmatching.DTO.RematchingDTO;
 import pairmatching.view.Enum.Course;
 import pairmatching.view.Enum.Level;
@@ -18,7 +18,7 @@ public class InputView {
     private static final int MISSION_INDEX = 2;
 
     private final static MenuDTO menuDTO = new MenuDTO();
-    private final static PairMatchingDTO pairMatchingDTO = new PairMatchingDTO();
+    private final static PairTagDTO pairMatchingDTO = new PairTagDTO();
     private final static RematchingDTO rematchingDTO = new RematchingDTO();
 
     public static MenuDTO readMenu() {
@@ -26,8 +26,8 @@ public class InputView {
         return convertToMenuDTO(Console.readLine().trim());
     }
 
-    public static PairMatchingDTO readPairMatching() {
-        OutputView.printPairMatchingInformation();
+    public static PairTagDTO readPairTag() {
+        OutputView.printPairMatchingAdvice();
         return convertToPairMatchingDTO(Console.readLine().trim());
     }
 
@@ -36,12 +36,12 @@ public class InputView {
         return convertToRematchingDTO(Console.readLine().trim());
     }
 
-    private static PairMatchingDTO convertToPairMatchingDTO(String input) {
+    private static PairTagDTO convertToPairMatchingDTO(String input) {
         List<String> pairMatchingInput = List.of(input.split(","));
         InputValidator.pairMatchingInputSizeValidate(pairMatchingInput);
-        Course course = Course.from(pairMatchingInput.get(COURSE_INDEX));
-        Level level = Level.from(pairMatchingInput.get(LEVEL_INDEX));
-        Mission mission = Mission.from(pairMatchingInput.get(MISSION_INDEX));
+        Course course = Course.from(pairMatchingInput.get(COURSE_INDEX).trim());
+        Level level = Level.from(pairMatchingInput.get(LEVEL_INDEX).trim());
+        Mission mission = Mission.from(pairMatchingInput.get(MISSION_INDEX).trim());
         mission.in(level);
         return pairMatchingDTO.setParMatchingDTO(course, level, mission);
     }

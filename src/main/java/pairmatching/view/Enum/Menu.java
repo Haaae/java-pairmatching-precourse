@@ -6,9 +6,9 @@ import pairmatching.controller.PairMatchingController;
 import pairmatching.view.ExceptionHandler;
 
 public enum Menu {
-    PAIR_MATCHING("1", "페어 매칭", PairMatchingController -> {}),
-    LOOKUP("2", "페어 조회", PairMatchingController -> {}),
-    INITIALIZATION("3", "페어 초기화", PairMatchingController -> {}),
+    PAIR_MATCHING("1", "페어 매칭", PairMatchingController::pairMatch),
+    LOOKUP("2", "페어 조회", PairMatchingController::lookUpPairMatching),
+    INITIALIZATION("3", "페어 초기화", PairMatchingController::resetPairMatching),
     QUIT("Q", "종료", PairMatchingController -> {});
 
     private final String symbol;

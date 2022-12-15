@@ -1,6 +1,9 @@
 package pairmatching.view.Enum;
 
 import java.util.Arrays;
+import java.util.List;
+import pairmatching.domain.Crew;
+import pairmatching.domain.CrewMemberReader;
 
 public enum Course {
     BACKEND("백엔드"),
@@ -21,5 +24,9 @@ public enum Course {
 
     public String getName() {
         return name;
+    }
+
+    public List<Crew> getCrews() {
+        return CrewMemberReader.getInstance().readCrews(this);
     }
 }

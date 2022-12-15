@@ -1,7 +1,7 @@
 package pairmatching.domain;
 
 import java.util.List;
-import pairmatching.constants.Enum.Level;
+import java.util.stream.Collectors;
 
 public class Pair {
     private final List<Crew> pair;
@@ -20,6 +20,12 @@ public class Pair {
             hashCode += crew.hashCode();
         }
         return hashCode / pair.size();
+    }
+
+    public String joinToString(String delimiter) {
+        return pair.stream()
+                .map(Crew::getName)
+                        .collect(Collectors.joining(delimiter));
     }
 
     private boolean contains(Crew crew) {
